@@ -29,6 +29,7 @@ Clonar el repositorio:
 bash
 Copy code
 git clone <URL_DEL_REPOSITORIO>
+
 Navegar al directorio del proyecto:
 
 bash
