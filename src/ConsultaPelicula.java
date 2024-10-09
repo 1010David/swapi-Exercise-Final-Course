@@ -8,21 +8,28 @@ import java.net.http.HttpResponse;
 
 public class ConsultaPelicula {
 
+    // Método que busca información de una película de Star Wars a través de su número de episodio.
     public Pelicula buscaPelicula (int numeroPelicula) {
-
+        // Construye una URI (Uniform Resource Identifier) con el número de la película para realizar la solicitud a la API
         URI direccion = URI.create("https://swapi.dev/api/films/" + numeroPelicula);
 
+        // Crea un nuevo cliente HTTP que se encargará de hacer la solicitud.
         HttpClient client = HttpClient.newHttpClient();
+
+        // Construye una solicitud HTTP con la URI de la película.
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(direccion)
-                .build();
+                .uri(direccion) // Establece la URI que se usará en la solicitud.
+                .build(); // Construye la solicitud.
 
-
+        // Define una variable para almacenar la respuesta HTTP.
         HttpResponse<String> response;
+
         try {
+            // Envía la solicitud HTTP y recibe la respuesta en formato String.
             response = client
-                    .send(request, HttpResponse.BodyHandlers.ofString());
+                    .send(request, HttpResponse.BodyHandlers.ofString()); // La respuesta se maneja como un string
         } catch (Exception e) {
+            // Si ocurre un error durante la solicitud (por ejemplo, la película no existe), lanza una excepción.
             throw new RuntimeException("Pelíucla no encotnrada");
         }
 
